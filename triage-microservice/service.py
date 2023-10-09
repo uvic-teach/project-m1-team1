@@ -1,82 +1,45 @@
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
-import psycopg2
+from flask import Flask, request
+import pyodbc
 import os
 
 app = Flask(__name__)
 
-conn = psycopg2.connect(
-    database="seng350",
-    host="localhost", port="5432",
-    user=os.getenv('DB_USERNAME'),
-    password=os.getenv('DB_PASSWORD')
-)
+connection_string = os.getenv('AZURE_SQL_CONNECTIONSTRING')
 
-cur = conn.cursor()
-
-cur.execute(
-    '''CREATE TABLE IF NOT EXISTS Users (id serial PRIMARY KEY\
-        ,name varchar(80) not null\
-        ,email varchar(200) not null);'''
-)
-
-cur.execute(
-    '''INSERT INTO Users (name, email) VALUES ('Bob', 'bob@email.com')\
-        ,('Jon', 'jon@gmail.com')\
-        ,('Ed', 'ed@outlook.com')\
-        ,('Bruce', 'bruce@icloud.com');'''
-)
-
-conn.commit()
-
-print("DB CREATED")
-
-cur.close()
-conn.close()
-
-
-@app.route("/api/user", methods=["POST"])
+@app.route("/triage/user", methods=["POST"])
 def create_user():
-    conn = psycopg2.connect(
-        database="seng350",
-        host="localhost", port="5432",
-        user=os.getenv('DB_USERNAME'),
-        password=os.getenv('DB_PASSWORD')
-    )
-    cur = conn.cursor()
-    
-    data = request.get_json()
-    name = data["name"]
-    email = data["email"]
+    with get_conn() as conn:
+        cursor = conn.cursor()
+        
+        data = request.get_json()
+        name = data["name"]
+        email = data["email"]
 
-    cur.execute(
-        '''INSERT INTO Users (name, email) VALUES (%s, %s)''', (name, email)
-    )
-    conn.commit()
+        cursor.execute(f"INSERT INTO Users (name, email) VALUES (?, ?)", (name, email))
+        conn.commit()
 
-    cur.close()
-    conn.close()
-    
-    return {"name": name, "email": email, "message": f"User {email} created."}, 201
+        return {"name": name, "email": email, "message": f"User {email} created."}, 201
 
-@app.route("/api/user", methods=["GET"])
+
+@app.route("/triage/user", methods=["GET"])
 def get_all_users():
-    conn = psycopg2.connect(
-        database="seng350",
-        host="localhost", port="5432",
-        user=os.getenv('DB_USERNAME'),
-        password=os.getenv('DB_PASSWORD')
-    )
-    cur = conn.cursor()
+    data = []
+    with get_conn() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM Users")
 
-    cur.execute(
-        '''SELECT * FROM Users'''
-    )
-    data = cur.fetchall()
-    cur.close()
-    conn.close()
+        columns = [column[0] for column in cursor.description]
+        
+        for row in cursor.fetchall():
+            data.append(dict(zip(columns, row)))
+    
+    return data
 
-    return jsonify(data)
+
+def get_conn():
+    return pyodbc.connect(os.getenv('AZURE_SQL_CONNECTIONSTRING'))
+
 
 if __name__ == "__main__":
     load_dotenv()
