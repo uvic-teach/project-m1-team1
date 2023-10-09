@@ -7,6 +7,10 @@ app = Flask(__name__)
 
 connection_string = os.getenv('AZURE_SQL_CONNECTIONSTRING')
 
+@app.route("/", methods=["GET"])
+def home():
+    return {"homepage": "ok"}
+
 @app.route("/triage/user", methods=["POST"])
 def create_user():
     with get_conn() as conn:
