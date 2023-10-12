@@ -8,27 +8,25 @@ from flask_jwt_extended import JWTManager, get_jwt_identity, jwt_required
 
 
 app = Flask(__name__)
-app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')  # Change this!
+app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 
 connection_string = os.getenv('AZURE_SQL_CONNECTIONSTRING')
 
-
 @app.route("/", methods=["GET"])
-def home():
-    return jsonify({"message": "Welcome, please login or register."}), 200
-
-
-@app.route("/triage/form", methods=["GET"])
 @jwt_required()
-def get_triage_form():
+def home():
+    return jsonify({"message": "Welcome - Triage API"}), 200
+
+
+@app.route("/form", methods=["GET"])
+@jwt_required()
+def get_form():
     username = get_jwt_identity()
 
     with get_conn() as conn:
         cursor = conn.cursor()
-        cursor.execute(
-            f"SELECT TOP 1 * FROM Patient WHERE Username = ?", (username))
-
+        cursor.execute("SELECT TOP 1 * FROM Patient WHERE Username = ? ORDER BY CreatedTimestamp DESC", (username))
         db_data = cursor.fetchone()
         if (db_data is None):
             return jsonify({"message": "You haven't completed any forms."}), 200
@@ -40,9 +38,9 @@ def get_triage_form():
             return jsonify(data), 200
 
 
-@app.route("/triage/form", methods=["POST"])
+@app.route("/form", methods=["POST"])
 @jwt_required()
-def create_triage_form():
+def create_form():
     username = get_jwt_identity()
     data = request.get_json()
 
@@ -72,4 +70,4 @@ def get_conn():
 
 if __name__ == "__main__":
     load_dotenv()
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=5001)
