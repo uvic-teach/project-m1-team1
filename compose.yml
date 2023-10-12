@@ -6,4 +6,4 @@ services:
   triage:
     image: seng350team1.azurecr.io/triage-microservice
     ports:
-      - '5000:5000'
+      - '5001:5001'
