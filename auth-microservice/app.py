@@ -1,3 +1,4 @@
+import datetime
 import os
 import pyodbc
 
@@ -26,8 +27,7 @@ def login():
 
     with get_conn() as conn:
         cursor = conn.cursor()
-        cursor.execute(
-            f"SELECT TOP 1 * FROM Account WHERE username = ?", (username))
+        cursor.execute("SELECT TOP 1 * FROM Account WHERE username = ?", (username))
 
         db_data = cursor.fetchone()
         if (db_data is None or password != db_data.Password):
@@ -35,7 +35,7 @@ def login():
 
         response = {
             "status": "success",
-            "message": "Successfully logged in.",
+            "message": f"Successfully logged in as {username}",
             "auth_token": create_access_token(identity=username)
         }
         return jsonify(response), 200
@@ -43,20 +43,32 @@ def login():
 
 @app.route("/register", methods=["POST"])
 def register():
+    data = request.json
     username = request.json.get("username", None)
     password = request.json.get("password", None)
 
     with get_conn() as conn:
         cursor = conn.cursor()
-        cursor.execute(
-            f"SELECT TOP 1 * FROM Account WHERE username = ?", (username))
+        cursor.execute("SELECT TOP 1 * FROM Account WHERE Username = ?", username)
 
         if (cursor.fetchone() is not None):
             return jsonify({"status": "fail", "message": "Username already exists"}), 401
 
-        cursor.execute(
-            f"INSERT INTO Account (username, password) VALUES (?, ?)", (username, password))
-        conn.commit()
+        # Insert info into Account table
+        cursor.execute("INSERT INTO Account (Username, Password) VALUES (?, ?)", (username, password))
+        cursor.execute("SELECT @@IDENTITY AS ID;")
+        accountId = cursor.fetchone()[0]        
+        
+        # Insert info into Patient table
+        query = "INSERT INTO Patient (AccountId, Username, Name, Age, Address, Phone, CreatedTimestamp) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        param = [accountId
+                 ,username
+                 ,data.get('name', None)
+                 ,int(data.get('age', None))
+                 ,data.get('address', None)
+                 ,data.get('phone', None)
+                 ,datetime.datetime.now()]
+        cursor.execute(query, param)
 
         response = {
             "status": "success",

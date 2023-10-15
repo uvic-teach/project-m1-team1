@@ -26,15 +26,25 @@ def get_form():
 
     with get_conn() as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT TOP 1 * FROM Patient WHERE Username = ? ORDER BY CreatedTimestamp DESC", (username))
-        db_data = cursor.fetchone()
+        
+        getPatientQuery = "SELECT TOP 1 AccountId, PatientId FROM Patient WHERE Username=?"
+        getPatientQueryParam = [username]
+        cursor.execute(getPatientQuery, getPatientQueryParam)
+        patientInfo = cursor.fetchone()
+        
+        getTriagesQuery = "SELECT * FROM Triage WHERE AccountId = ? AND PatientId = ? ORDER BY CreatedTimestamp DESC"
+        cursor.execute(getTriagesQuery, (patientInfo.AccountId, patientInfo.PatientId))
+        db_data = cursor.fetchall()
+        
         if (db_data is None):
             return jsonify({"message": "You haven't completed any forms."}), 200
         else:
             data = []
             columns = [column[0] for column in cursor.description]
 
-            data.append(dict(zip(columns, db_data)))
+            for row in db_data:
+                data.append(dict(zip(columns, row)))
+
             return jsonify(data), 200
 
 
@@ -46,21 +56,62 @@ def create_form():
 
     with get_conn() as conn:
         cursor = conn.cursor()
-        query = "INSERT INTO Patient (Username, Name, Age, Address, Phone, Symptom1, Symptom2, Condition1, Condition2, CreatedTimestamp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-        param = [username
-                 ,data.get('name', None)
-                 ,int(data.get('age', None))
-                 ,data.get('address', None)
-                 ,data.get('phone', None)
-                 ,data.get('symptom1', None)
-                 ,data.get('symptom2', None)
-                 ,data.get('condition1', None)
-                 ,data.get('condition2', None)
-                 ,datetime.datetime.now()]
-        cursor.execute(query, param)
+
+        getPatientQuery = "SELECT TOP 1 AccountId, PatientId FROM Patient WHERE Username=?"
+        getPatientQueryParam = [username]
+        cursor.execute(getPatientQuery, getPatientQueryParam)
+        patientInfo = cursor.fetchone()
+    
+        s1 = data.get('Symptom1', None)
+        s2 = data.get('Symptom2', None)
+        s3 = data.get('Symptom3', None)
+        c1 = data.get('Condition1', None)
+        c2 = data.get('Condition2', None)
+        c3 = data.get('Condition3', None)
+
+        outcome = ''
+        if(all(i is not None for i in [s1, s2, s3, c1, c2, c3])):
+            outcome = 'ED'
+        elif(all(i is None for i in [s1, s2, s3, c1, c2, c3])):
+            outcome = 'You\'re Okay'
+        elif(
+            s1 is None and
+            s2 is None and
+            s3 is None
+        ):
+            outcome = 'In-person Triage'
+        elif(
+            c1 is None and
+            c2 is None and
+            c3 is None
+        ):
+            outcome = 'GP'
+        else:
+            outcome = 'Hotline'
+
+        query = '''INSERT INTO Triage (
+                AccountId
+                ,PatientId
+                ,Symptom1
+                ,Symptom2
+                ,Symptom3
+                ,Condition1
+                ,Condition2
+                ,Condition3
+                ,Outcome
+                ,CreatedTimestamp 
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'''
+
+        cursor.execute(query, (
+            patientInfo.AccountId, 
+            patientInfo.PatientId, 
+            s1, s2, s3, c1, c2, c3, 
+            outcome, datetime.datetime.now())
+        )
         cursor.commit()
 
         data["message"] = "Form submitted."
+        data["outcome"] = outcome
         return jsonify(data), 200
 
 
