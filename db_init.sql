@@ -2,6 +2,7 @@ CREATE TABLE Account(
     AccountId INT IDENTITY PRIMARY KEY
     ,Username VARCHAR(255) NOT NULL
     ,Password VARCHAR(255) NOT NULL
+    ,IsDoctor BIT
 );
 
 CREATE TABLE Patient(
