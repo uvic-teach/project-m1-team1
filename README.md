@@ -4,7 +4,14 @@
 - `seng350-team1-auth.azurewebsites.net`
 - `seng350-team1-triage.azurewebsites.net`
 - `seng350-team1-waitlist.azurewebsites.net`
+> **NOTE:** Our Azure database is set to sleep after 1-hour of idling. Please wait a minute or two if the first request fails, the database is "waking up".
 
+### Available Credentials
+|username|password|
+|--------|--------|
+|test    |test    |
+|test2   |test    |
+|doctor  |doctor  |
 
 ## Run Locally
 
