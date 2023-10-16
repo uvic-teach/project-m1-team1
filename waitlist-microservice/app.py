@@ -71,6 +71,28 @@ def enter_waitlist():
 
         else: return  jsonify({"message": "You are already in the waitlist"}), 400
 
+    
+@app.route('/', methods=["DELETE"])
+@jwt_required()
+
+def remove_from_waitlist():
+
+    username = get_jwt_identity()
+
+    with get_conn() as conn: 
+        cursor = conn.cursor()
+        cursor.execute("SELECT IsDoctor as Doc FROM Account where Username = ?", username)
+
+        user = cursor.fetchone()
+
+    if(user.Doc == 1):
+        
+        return jsonify({"message": "Patient removed from waitlist"}), 200
+    
+    else: 
+
+         return jsonify({"message": "Unauthorized Access"}), 400
+
 
 def get_conn():
     return pyodbc.connect(os.getenv('AZURE_SQL_CONNECTIONSTRING'))
