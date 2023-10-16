@@ -42,10 +42,10 @@ CREATE TABLE Waitlist(
     ,CONSTRAINT fk_waitlist2 FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
 );
 
-INSERT INTO Account(Username, Password) VALUES
-    ('test@email.com', 'test')
-    ,('doctor@email.com', 'doctor')
-    ,('nurse@email.com', 'nurse')
+INSERT INTO Account(Username, Password, IsDoctor) VALUES
+    ('test', 'test', NULL)
+    ,('doctor', 'doctor', 1)
+    ,('nurse', 'nurse', 1)
     ;
 
 INSERT INTO Patient(AccountId, Username, Name, Age, Address, Phone, CreatedTimestamp) VALUES
