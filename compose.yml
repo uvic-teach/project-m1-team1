@@ -7,3 +7,7 @@ services:
     image: triage-microservice
     ports:
       - '5001:5001'
+  waitlist:
+    image: waitlist-microservice
+    ports:
+      - '5002:5002'

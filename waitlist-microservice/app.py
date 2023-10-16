@@ -8,6 +8,8 @@ from flask_jwt_extended import JWTManager, get_jwt_identity, jwt_required
 
 
 app = Flask(__name__)
+
+# Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 
@@ -16,35 +18,28 @@ connection_string = os.getenv('AZURE_SQL_CONNECTIONSTRING')
 @app.route('/', methods=["GET"])
 @jwt_required()
 def get_waitlist():
-
     username = get_jwt_identity()
 
     with get_conn() as conn: 
         cursor = conn.cursor()
         getPatientQuery = " SELECT WaitlistId FROM Waitlist WHERE AccountId = (SELECT AccountId FROM Account WHERE Username = ?)"
-        getPatientQueryParam = [username]
 
-        cursor.execute(getPatientQuery, getPatientQueryParam)
+        cursor.execute(getPatientQuery, username)
         patientInfo = cursor.fetchone()
 
-        if(patientInfo.WaitlistId is None):
-
-            cursor.execute("SELECT count(*) FROM waitlist where cast(BookedDatetime as date) = ?", datetime.date.today() )
+        if(patientInfo is None):
+            cursor.execute("SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ?", datetime.date.today())
         
         else:
-            query ="SELECT count(*) FROM Waitlist where cast(BookedDatetime as date) = ? and WaitlistId < ? "
-            queryparam = [datetime.date.today(), patientInfo.WaitlistId]
-            cursor.execute(query, queryparam)
+            query ="SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ? AND WaitlistId < ?"
+            cursor.execute(query, (datetime.date.today(), patientInfo.WaitlistId))
         
-        db_data = cursor.fetchone()[0]
+        db_data = cursor.fetchone()
 
-
-
-        if(db_data is None):
+        if(db_data.C <= 0):
             return jsonify({"message": "Waitlist is empty."}), 200 
-
         else: 
-            return jsonify({"Number of patients ahead": db_data}), 200
+            return jsonify({"Number of patients ahead": db_data.C}), 200
 
 
 
@@ -80,6 +75,6 @@ def enter_waitlist():
 def get_conn():
     return pyodbc.connect(os.getenv('AZURE_SQL_CONNECTIONSTRING'))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     load_dotenv()
     app.run(debug=True, host="0.0.0.0", port=5002)

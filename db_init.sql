@@ -30,7 +30,7 @@ CREATE TABLE Triage(
     ,CreatedTimestamp DATETIME
     ,CONSTRAINT fk_triage1 FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
     ,CONSTRAINT fk_triage2 FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
-)
+);
 
 CREATE TABLE Waitlist(
     WaitlistId INT IDENTITY PRIMARY KEY
@@ -39,7 +39,7 @@ CREATE TABLE Waitlist(
     ,BookedDatetime DATETIME
     ,CONSTRAINT fk_waitlist1 FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
     ,CONSTRAINT fk_waitlist2 FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
-)
+);
 
 INSERT INTO Account(Username, Password) VALUES
     ('test@email.com', 'test')
