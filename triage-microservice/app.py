@@ -5,6 +5,7 @@ import pyodbc
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_jwt_extended import JWTManager, get_jwt_identity, jwt_required
+import requests
 
 
 app = Flask(__name__)
@@ -71,7 +72,15 @@ def create_form():
 
         outcome = ''
         if(all(i is not None for i in [s1, s2, s3, c1, c2, c3])):
-            outcome = 'ED'
+            outcome = 'ED. You\'ve been added to the waitlist.'
+            token = request.headers["Authorization"].split(" ")[1]
+            print(token)
+            print(request.headers)
+            headers = {
+                'Authorization': f"Bearer {token}",
+                'Content-Type': 'application/json'
+            }
+            requests.request("POST", "http://localhost:5002", headers=headers)
         elif(all(i is None for i in [s1, s2, s3, c1, c2, c3])):
             outcome = 'You\'re Okay'
         elif(
@@ -79,15 +88,15 @@ def create_form():
             s2 is None and
             s3 is None
         ):
-            outcome = 'In-person Triage'
+            outcome = 'In-person Triage. Visit your GP'
         elif(
             c1 is None and
             c2 is None and
             c3 is None
         ):
-            outcome = 'GP'
+            outcome = 'Purchase over-the-counter meds'
         else:
-            outcome = 'Hotline'
+            outcome = 'Contact the Hotline (1-800-9999)'
 
         query = '''INSERT INTO Triage (
                 AccountId
