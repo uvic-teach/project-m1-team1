@@ -22,28 +22,41 @@ def get_waitlist():
 
     with get_conn() as conn: 
         cursor = conn.cursor()
-        getPatientQuery = " SELECT WaitlistId FROM Waitlist WHERE AccountId = (SELECT AccountId FROM Account WHERE Username = ?)"
-
-        cursor.execute(getPatientQuery, username)
-        patientInfo = cursor.fetchone()
-
-        if(patientInfo is None):
-            cursor.execute("SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ?", datetime.date.today())
         
+        cursor.execute("SELECT TOP 1 IsDoctor FROM Account WHERE Username = ?", username)
+        
+        isDoctor = cursor.fetchone()
+        if (isDoctor.IsDoctor is True):
+            cursor.execute(
+                "SELECT w.*, p.Name, p.Age, p.Address, p.Phone FROM Waitlist w JOIN Patient p ON w.PatientId = p.PatientId")
+            data = []
+            columns = [column[0] for column in cursor.description]
+
+            for row in cursor.fetchall():
+                data.append(dict(zip(columns, row)))
+
+            return jsonify(data), 200
         else:
-            query ="SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ? AND WaitlistId < ?"
-            cursor.execute(query, (datetime.date.today(), patientInfo.WaitlistId))
-        
-        db_data = cursor.fetchone()
+            getPatientQuery = " SELECT WaitlistId FROM Waitlist WHERE AccountId = (SELECT AccountId FROM Account WHERE Username = ?)"
 
-        if(db_data.C <= 0):
-            return jsonify({"message": "Waitlist is empty."}), 200 
-        else: 
-            return jsonify({"Number of patients ahead": db_data.C}), 200
+            cursor.execute(getPatientQuery, username)
+            patientInfo = cursor.fetchone()
+
+            if(patientInfo is None):
+                cursor.execute("SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ?", datetime.date.today())
+            
+            else:
+                query ="SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ? AND WaitlistId < ?"
+                cursor.execute(query, (datetime.date.today(), patientInfo.WaitlistId))
+            
+            db_data = cursor.fetchone()
+
+            if(db_data.C <= 0):
+                return jsonify({"message": "Waitlist is empty."}), 200 
+            else: 
+                return jsonify({"Number of patients ahead": db_data.C}), 200
 
 
-
-## POST WAITLIST 
 
 @app.route('/', methods=["POST"])
 @jwt_required()
