@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import datetime
 import os
 import pyodbc
@@ -78,20 +78,21 @@ def enter_waitlist():
 def remove_from_waitlist():
 
     username = get_jwt_identity()
+    waitlistId = request.json.get("waitlistId", None)
 
     with get_conn() as conn: 
         cursor = conn.cursor()
         cursor.execute("SELECT IsDoctor as Doc FROM Account where Username = ?", username)
-
         user = cursor.fetchone()
 
-    if(user.Doc == 1):
-        
-        return jsonify({"message": "Patient removed from waitlist"}), 200
-    
-    else: 
+        if(user.Doc == 1):
 
-         return jsonify({"message": "Unauthorized Access"}), 400
+            cursor.execute("DELETE FROM Waitlist where WaitlistId = ? ", waitlistId)
+            return jsonify({"message": f"Patient {waitlistId} removed from waitlist"}), 200
+        
+        else: 
+
+            return jsonify({"message": "Unauthorized Access"}), 400
 
 
 def get_conn():
