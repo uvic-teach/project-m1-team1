@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-16T05:35:19.330Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="ZuUAjMMUTrZxQg7fgSMg" version="22.0.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-16T05:54:05.023Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="vWJjKmHUlDWuAhaJMBhB" version="22.0.4" type="github">
   <diagram name="Page-1" id="W80nSnG5hbROMhEEu_fI">
     <mxGraphModel dx="1434" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -80,6 +80,63 @@
         </mxCell>
         <mxCell id="5cH-gRIjaQ19I26PeQ5p-40" value="Store Registration&lt;br&gt;Information" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="440" y="240" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-42" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="590" y="320" as="sourcePoint" />
+            <mxPoint x="420" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-44" value="If registration worked" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="435" y="320" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-45" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="360" as="sourcePoint" />
+            <mxPoint x="260" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-46" value="Send Successful&lt;br&gt;Registration Message" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="270" y="360" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-47" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="420" as="sourcePoint" />
+            <mxPoint x="120" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-49" value="Display Successful&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Registration Message" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="120" y="423" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-50" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="595" y="463" as="sourcePoint" />
+            <mxPoint x="425" y="463" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-51" value="If registration didn&#39;t work" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="430" y="463" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-52" value="Send Failed&lt;br&gt;Registration Message" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="270" y="493" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-53" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="493" as="sourcePoint" />
+            <mxPoint x="260" y="493" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="340" y="493" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-55" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="560" as="sourcePoint" />
+            <mxPoint x="120" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5cH-gRIjaQ19I26PeQ5p-56" value="Display Failed&lt;br&gt;Registration Message" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="120" y="560" width="140" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
