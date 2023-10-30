@@ -1,13 +1,22 @@
 services:
   auth:
-    image: auth-microservice
+    build: 
+      context: ./microservices/auth-microservice
+      dockerfile: Dockerfile
+    image: microservices/auth-microservice
     ports:
       - '5000:5000'
   triage:
-    image: triage-microservice
+    build: 
+      context: ./microservices/triage-microservice
+      dockerfile: Dockerfile
+    image: microservices/triage-microservice
     ports:
       - '5001:5001'
   waitlist:
-    image: waitlist-microservice
+    build: 
+      context: ./microservices/waitlist-microservice
+      dockerfile: Dockerfile
+    image: microservices/waitlist-microservice
     ports:
       - '5002:5002'

@@ -17,18 +17,11 @@
 
 > **NOTE:** You must create a `.env` file in `./auth-microservice` and `./triage-microservice` specifying the `AZURE_SQL_CONNECTIONSTRING` and `JWT_SECRET_KEY`.
 
+Build the project
 ```
-docker build -t auth-microservice:latest -f ./auth-microservice/Dockerfile ./auth-microservice
+docker-compose build
 ```
-
-```
-docker build -t triage-microservice:latest -f ./triage-microservice/Dockerfile ./triage-microservice
-```
-
-```
-docker build -t waitlist-microservice:latest -f ./waitlist-microservice/Dockerfile ./waitlist-microservice
-```
-
+Run the project
 ```
 docker-compose up
 ```
