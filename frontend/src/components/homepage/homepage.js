@@ -8,9 +8,9 @@ function Homepage() {
     { id: 2, feature: "Triage" },
   ];
 
-  return <div>
-    <Item items ={items[0] }> </Item >
-    <Item items ={items[1] }> </Item>
+  return <div className="square-list">
+    <Item feature ={items[0].feature }> </Item>
+    <Item feature ={items[1].feature }> </Item>
   </div>;
 }
 
