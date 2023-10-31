@@ -29,7 +29,12 @@ function Login() {
 
     function loginRequest(){
         fetch('https://seng350-team1-auth.azurewebsites.net', {
-            method: 'GET',
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loginInfo)
         })
     }
 
