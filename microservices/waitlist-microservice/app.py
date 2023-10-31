@@ -1,13 +1,16 @@
-
-from flask import Flask, jsonify, request
 import datetime
 import os
+
 import pyodbc
 from dotenv import load_dotenv
+from flask import Flask, jsonify, request
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager, get_jwt_identity, jwt_required
 
-
 app = Flask(__name__)
+
+# Enable CORS
+CORS(app)
 
 # Setup the Flask-JWT-Extended extension
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')

@@ -15,12 +15,12 @@ WORKDIR /waitlist-microservice
 RUN apk --no-cache add curl gnupg gcc g++ unixodbc-dev
 
 # Download MSSQL drivers
-RUN curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/msodbcsql17_17.10.4.1-1_amd64.apk
-RUN curl -O https://download.microsoft.com/download/e/4/e/e4e67866-dffd-428c-aac7-8d28ddafb39b/mssql-tools_17.10.1.1-1_amd64.apk
+RUN curl -O https://download.microsoft.com/download/3/5/5/355d7943-a338-41a7-858d-53b259ea33f5/msodbcsql18_18.3.2.1-1_amd64.apk
+RUN curl -O https://download.microsoft.com/download/3/5/5/355d7943-a338-41a7-858d-53b259ea33f5/mssql-tools18_18.3.1.1-1_amd64.apk
 
 # Install MSSQL drivers
-RUN apk add --allow-untrusted msodbcsql17_17.10.4.1-1_amd64.apk
-RUN apk add --allow-untrusted mssql-tools_17.10.1.1-1_amd64.apk
+RUN apk add --allow-untrusted msodbcsql18_18.3.2.1-1_amd64.apk
+RUN apk add --allow-untrusted mssql-tools18_18.3.1.1-1_amd64.apk
 
 # Download dependencies 
 COPY requirements.txt requirements.txt
