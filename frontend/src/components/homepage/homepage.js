@@ -8,10 +8,10 @@ function Homepage() {
     { id: 2, feature: "Triage" },
   ];
 
-  return <div className="square-list">
-    <Item feature ={items[0].feature }> </Item>
-    <Item feature ={items[1].feature }> </Item>
-  </div>;
+  return <div class="wrap">
+    <div class="board"><Item feature ={items[0].feature }> </Item></div>
+    <div class="board"><Item feature ={items[1].feature }> </Item></div>
+  </div>
 }
 
 export default Homepage;
