@@ -22,6 +22,17 @@ function Login() {
         console.log(UserName)
     }
 
+    var loginInfo = {
+        "username": "test",
+        "password": "test"
+    }
+
+    function loginRequest(){
+        fetch('https://seng350-team1-auth.azurewebsites.net', {
+            method: 'GET',
+        })
+    }
+
     return (
         <div>
             <header className="App-header">
@@ -41,7 +52,7 @@ function Login() {
                     className="App-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={PrintUserName}
+                    onClick={loginRequest}
                 >
                     <button
                         className="Login-Button"
