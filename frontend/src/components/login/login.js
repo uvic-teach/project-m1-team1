@@ -11,7 +11,6 @@ function Login() {
 
     function UserNameHandler(event) {
         setUserName(event.target.value)
-        console.log(UserName)
     }
 
     function PasswordHandler(event) {
@@ -23,23 +22,15 @@ function Login() {
     }
 
     var loginInfo = {
-        "username": "test",
-        "password": "test"
+        "username": "",
+        "password": ""
     }
 
     async function loginRequest() {
-        // fetch('https://seng350-team1-auth.azurewebsites.net', {
-        //     method: 'POST',
-        //     mode: 'cors',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(loginInfo)
-        // })
-        axios.post('https://seng350-team1-auth.azurewebsites.net/login', { 
-            username: 'test',
-            password: 'test'
-         })
+        loginInfo.username = UserName
+        loginInfo.password = Password
+
+        axios.post('https://seng350-team1-auth.azurewebsites.net/login', loginInfo)
             .then(res => {
                 console.log(res);
                 console.log(res.data);
