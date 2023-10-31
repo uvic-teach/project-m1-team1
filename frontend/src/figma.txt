@@ -1,0 +1,118 @@
+/* Login Page */
+
+position: relative;
+width: 1440px;
+height: 1024px;
+
+background: #264653;
+
+
+/* Username/Pword boxes */
+
+position: absolute;
+width: 713px;
+height: 272.5px;
+left: 363px;
+top: 453px;
+
+
+
+/* Rectangle 35 */
+
+position: absolute;
+width: 713px;
+height: 233px;
+left: 363px;
+top: 492.5px;
+
+background: #D9D9D9;
+border-radius: 20px;
+
+
+/* Username */
+
+position: absolute;
+width: 194px;
+height: 49px;
+left: 393px;
+top: 453px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+
+color: #FFFFFF;
+
+
+
+/* Password */
+
+position: absolute;
+width: 194px;
+height: 49px;
+left: 393px;
+top: 609px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+
+color: #FFFFFF;
+
+
+
+/* Login button */
+
+position: absolute;
+width: 138px;
+height: 47px;
+left: 938px;
+top: 760px;
+
+
+
+/* Rectangle 36 */
+
+position: absolute;
+width: 138px;
+height: 47px;
+left: 938px;
+top: 760px;
+
+background: #2A9D8F;
+box-shadow: inset -3px -4px 8px 3px rgba(0, 0, 0, 0.25);
+border-radius: 15px;
+
+
+/* Login */
+
+position: absolute;
+width: 63px;
+height: 29px;
+left: 975px;
+top: 769px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 29px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Ocean logo 1 */
+
+position: absolute;
+width: 353px;
+height: 338px;
+left: 543px;
+top: 101px;
+
+background: url(Ocean logo.png);
