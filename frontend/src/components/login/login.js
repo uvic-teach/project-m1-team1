@@ -2,24 +2,39 @@ import React from "react";
 import './login.css';
 import logo from './medLogo.svg';
 import { useState } from "react";
-
+import axios from 'axios';
 
 function Login() {
 
     const [UserName, setUserName] = useState("");
     const [Password, setPassword] = useState("");
 
-    function UserNameHandler(event){
+    function UserNameHandler(event) {
         setUserName(event.target.value)
-        console.log(UserName)
     }
 
-    function PasswordHandler(event){
+    function PasswordHandler(event) {
         setPassword(event.target.value)
     }
 
-    function PrintUserName(){
+    function PrintUserName() {
         console.log(UserName)
+    }
+
+    var loginInfo = {
+        "username": "",
+        "password": ""
+    }
+
+    async function loginRequest() {
+        loginInfo.username = UserName
+        loginInfo.password = Password
+
+        axios.post('https://seng350-team1-auth.azurewebsites.net/login', loginInfo)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
     }
 
     return (
@@ -31,17 +46,17 @@ function Login() {
                 </p>
                 <form>
                     <label>Username</label>
-                    <input type="text" id="fname" name="fname" value={UserName} onChange={UserNameHandler}/>
+                    <input type="text" id="fname" name="fname" value={UserName} onChange={UserNameHandler} />
                 </form>
                 <form>
                     <label>Password</label>
-                    <input type="text" id="fname" name="fname" value={Password} onChange={PasswordHandler}/>
+                    <input type="text" id="fname" name="fname" value={Password} onChange={PasswordHandler} />
                 </form>
                 <a
                     className="App-link"
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={PrintUserName}
+                    onClick={loginRequest}
                 >
                     <button
                         className="Login-Button"

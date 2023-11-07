@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2023-11-07T20:48:13.769Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="jmHTlAOwi3EwD_lps3RH" version="22.0.8" type="github">
+  <diagram name="Page-1" id="qHXAmyH5HkXtZ10Te1L3">
+    <mxGraphModel dx="1050" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-1" value="Patient&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="100" y="30" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-2" value="Authorization Microservice" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="560" y="30" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-4" target="M_P1pvSRHB2HR1Barq1g-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-4" value="" style="ellipse;fillColor=strokeColor;html=1;" vertex="1" parent="1">
+          <mxGeometry x="115" y="145" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-16" target="M_P1pvSRHB2HR1Barq1g-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-6" value="Submit Login&lt;br&gt;Information" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="67.5" y="240" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-9" target="M_P1pvSRHB2HR1Barq1g-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-9" target="M_P1pvSRHB2HR1Barq1g-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-9" value="Validate Login&lt;br&gt;Information" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="577.5" y="240" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-11" target="M_P1pvSRHB2HR1Barq1g-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-11" value="Create Patient&lt;br&gt;Account" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="577.5" y="544" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-12" value="Valid" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="640" y="380" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-14" target="M_P1pvSRHB2HR1Barq1g-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-14" value="Show Patient&lt;br&gt;Account" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="67.5" y="544" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-6" target="M_P1pvSRHB2HR1Barq1g-16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="193" y="260" as="sourcePoint" />
+            <mxPoint x="578" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-16" value="Login&lt;br&gt;Form Initial" style="html=1;align=center;verticalAlign=middle;rounded=0;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="M_P1pvSRHB2HR1Barq1g-18" target="M_P1pvSRHB2HR1Barq1g-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-18" value="Login&lt;br&gt;Form Error" style="html=1;align=center;verticalAlign=middle;rounded=0;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-19" value="Invalid" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="505" y="120" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="M_P1pvSRHB2HR1Barq1g-20" value="" style="ellipse;html=1;shape=endState;fillColor=strokeColor;" vertex="1" parent="1">
+          <mxGeometry x="115" y="640" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
