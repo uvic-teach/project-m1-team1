@@ -1,11 +1,13 @@
 import React from "react";
-import './login.css';
-import logo from './medLogo.svg';
+import "./login.css";
+import logo from "./medLogo.svg";
 import { useState } from "react";
 import axios from 'axios';
 import { TextField, Button } from '@mui/material';
 
 function Login() {
+  //const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+  
 
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
@@ -76,4 +78,3 @@ function Login() {
 }
 
 export default Login;
-
