@@ -10,15 +10,11 @@ import {
 import ErrorPage from "./error_page";
 import { AuthProtectedRoutes, useAuth } from "./context/AuthContext";
 
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      
-      <Route path="/" element={<Login />} errorElement={<ErrorPage/>}/>
-      <Route element={<AuthProtectedRoutes/>} >
-        <Route path="/home" element={<Homepage />} errorElement={<ErrorPage/>} />
-      </Route>
+      <Route path="/" element={<Login />}  />
+      <Route path="/home" element={<Homepage />} ErrorBoundary={<ErrorPage/>} />
     </Route>
   )
 );

@@ -4,14 +4,15 @@ import logo from "./medLogo.svg";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ErrorPage from "../../error_page";
+import ErrorBoundary from "../../error_page";
 
 function Login() {
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
 
   function UserNameHandler(event) {
     setUserName(event.target.value);
@@ -33,27 +34,29 @@ function Login() {
   async function loginRequest() {
     loginInfo.username = UserName;
     loginInfo.password = Password;
-
-   const response = await axios
-      .post("https://seng350-team1-auth.azurewebsites.net/login", loginInfo)
+  
+  try{
+    const response = await axios
+      .post("https://seng350-team1-auth.azurewebsites.net/login", loginInfo);
       
-    
-    if(response?.status === 200){
+      if(response?.status === 200){
         setIsLoggedIn(true);
         setAuthUser({
             username: UserName,
             authToken: response.data['auth_token']
 
-        })
+        });
 
-        console.log(authUser)
+        console.log(authUser);
+        navigate("/home");
     }
-
-    if(location.state?.from){
-        navigate(location.state.from);
-    }
-
       
+  }
+  catch(e){
+    return <ErrorPage />
+  }
+    
+     
   }
 
   return (
