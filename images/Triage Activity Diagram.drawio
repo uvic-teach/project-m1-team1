@@ -1,9 +1,72 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T21:07:43.167Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" version="22.0.8" etag="HIXm3rch2RiEzK09fYNH" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T21:18:21.199Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="rvMoaiEqDIzDhj1aQ1Hj" version="22.0.8" type="github">
   <diagram name="Page-1" id="SolBoLHdsCEC56DxCQ1B">
-    <mxGraphModel>
+    <mxGraphModel dx="1050" dy="710" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="biRHA1K78NcGVho9kt-1-21" value="Patient&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="110" y="40" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-22" value="Triage Microservice" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="585" y="40" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-24" target="biRHA1K78NcGVho9kt-1-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-24" value="" style="ellipse;fillColor=strokeColor;html=1;" vertex="1" parent="1">
+          <mxGeometry x="125" y="155" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-36" target="biRHA1K78NcGVho9kt-1-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-26" value="Submit Triage&lt;br&gt;Information" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="77.5" y="250" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-29" target="biRHA1K78NcGVho9kt-1-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-29" target="biRHA1K78NcGVho9kt-1-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-29" value="Validate Triage&lt;br&gt;Information" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="587.5" y="250" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-31" target="biRHA1K78NcGVho9kt-1-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-31" value="Return Triage &lt;br&gt;Result" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="587.5" y="554" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-32" value="Valid" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="650" y="390" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-34" target="biRHA1K78NcGVho9kt-1-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-34" value="Show Triage &lt;br&gt;Result" style="html=1;align=center;verticalAlign=middle;rounded=1;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="77.5" y="554" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-26" target="biRHA1K78NcGVho9kt-1-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="203" y="270" as="sourcePoint" />
+            <mxPoint x="588" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-36" value="Triage&lt;br&gt;Form Initial" style="html=1;align=center;verticalAlign=middle;rounded=0;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="250" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="biRHA1K78NcGVho9kt-1-38" target="biRHA1K78NcGVho9kt-1-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-38" value="Triage&lt;br&gt;Form Error" style="html=1;align=center;verticalAlign=middle;rounded=0;absoluteArcSize=1;arcSize=10;dashed=0;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="150" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-39" value="Invalid" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="515" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="biRHA1K78NcGVho9kt-1-40" value="" style="ellipse;html=1;shape=endState;fillColor=strokeColor;" vertex="1" parent="1">
+          <mxGeometry x="125" y="650" width="30" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
