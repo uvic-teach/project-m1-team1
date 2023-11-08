@@ -8,6 +8,24 @@
   height:min-content;
 }
 
+.link{
+  margin: 20px;
+  display:inline-flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.button{
+  background: #5c719c;
+  position: relative;
+  text-align: center;
+  flex: 1;
+}
+
 .wrap {
+  display: flex;
+}
+
+.rectangle{
   display: flex;
 }

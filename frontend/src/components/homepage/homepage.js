@@ -17,8 +17,8 @@ function Homepage() {
       </p>
     </header>
     <div className="square-list">
-      <div class="board"><Item feature ={items[0].feature }> </Item></div>
-      <div class="board"><Item feature ={items[1].feature }> </Item></div>
+      <Item feature ={items[0].feature }> </Item>
+      <Item feature ={items[1].feature }> </Item>
     </div>
   </div>
 
