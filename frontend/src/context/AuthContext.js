@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useContext } from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-import Login from "../components/login/login";
+import { Navigate, useLocation } from "react-router-dom";
+
+
 
 
 const AuthContext = React.createContext();
@@ -28,10 +29,10 @@ export function AuthProvider(props){
 
 }
 
-export const AuthProtectedRoutes = () => {
-    const location = useLocation();
-    const isAuth = useAuth().isLoggedIn;
+// export const AuthProtectedRoutes = ({component: Component, ...rest}) => {
+//     const location = useLocation();
+//     const isAuth = useAuth().isLoggedIn;
     
-    return isAuth ? <Outlet/> : <Navigate to="/" replace state={{from: location}} />
-}
+//     return (isAuth ? <Navigate to="/home"/> : <Navigate to="/" replace state={{from: location}} />)
+// }
 
