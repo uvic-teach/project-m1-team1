@@ -1,3 +1,25 @@
 .square-list {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: auto;
+    flex: 1;
+  }
+
+  .HomePage {
+    display: flex;
+    background-color: #4b6599;
+    flex-direction: column;
+    flex:1;
+    text-align: center;
+    bottom: 0;
+  }
+
+  .Home-header {
+    display: flex;
+    flex:1;
+    background-color: #4b6599;
+    flex-direction: column;
+    font-size: calc(12px + 2vmin);
+    color: white;
   }
