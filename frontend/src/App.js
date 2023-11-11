@@ -1,12 +1,13 @@
 import './App.css';
 import Login from './components/login/login';
-import Homepage from './components/homepage/homepage'
+import Homepage from './components/homepage/homepage';
+import WaitList from './components/waitlist/waitlist';
 
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <WaitList />
     </div>
   );
 }
