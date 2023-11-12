@@ -1,0 +1,29 @@
+.WaitList-Page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.WaitList-Header{
+    display: flex;
+    flex-direction: row;
+}
+
+.WaitList-Logo{
+    height: 100px;
+}
+
+.WaitList-Title{
+    font-size: calc(32px);
+    color: white;
+    vertical-align: middle;
+    margin-top: 38px;
+    margin-left: 10px;
+}
+
+.WaitList-Body{
+    display: flex;
+    flex:1;
+    margin-top: 10px;
+    margin-inline: 50px;
+}
