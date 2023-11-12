@@ -12,23 +12,59 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
+import { Typography } from "@mui/material";
+import Questions from "./questions";
 
 export default function TriageForm() {
+    
 
-    const [age, setAge] = React.useState('');
+    const [value, setValue] = React.useState('');
+    const [pageNum, setPageNum] = React.useState(1);
 
-    const handleChange = (event) => {
-        setAge(event.target.value);
+    const handleSubmit = (event) => {
+        if (value == "Physical Injury") {
+            setPageNum(2);
+        }
     };
+
+    const QuestionControl = () => {
+        if (pageNum == 1) {
+            return <Question1 />;
+        }
+    };
+
+    const Question1 = () => {
+        return (
+            <RadioGroup value={value}>
+                <FormControlLabel value="Physical Injury" control={<Radio />} label="Physical Injury" />
+                <FormControlLabel value="Cold/Flu symptoms" control={<Radio />} label="Cold/Flu symptoms" />
+                <FormControlLabel value="Infection" control={<Radio />} label="Infection" />
+                <FormControlLabel value="Other" control={<Radio />} label="Other" />
+            </RadioGroup>
+        );
+    };
+
+    const Question2 = () => {
+        return (
+            <RadioGroup>
+                <FormControlLabel value="Physical Injury" control={<Radio />} label="Broken Bone" />
+                <FormControlLabel value="Cold/Flu symptoms" control={<Radio />} label="Cut or Gash" />
+                <FormControlLabel value="Infection" control={<Radio />} label="Bruising" />
+                <FormControlLabel value="Other" control={<Radio />} label="Other" />
+            </RadioGroup>
+        );
+    };
+
+
     return (
-        <Grid sx={{ background: "white" }}>
-            <Paper sx={{ height: 650 }} elevation={10}>
-                <Grid>
-                    <FormControl sx={{ margin: 8, width:200}}>
-                        
-                    </FormControl>
-                </Grid>
-            </Paper>
-        </Grid>
+        <form onSubmit={handleSubmit}>
+            <FormControl variant="standard">
+                <FormLabel sx={{ fontSize: 24, fontWeight: 600 }}>Nature of injury</FormLabel>
+                <FormLabel>Please choose an option that best fits the nature of your injury or medical concern</FormLabel>
+                <Questions/>
+                <Button sx={{ mr: 50 }} variant="contained" type="submit">Submit</Button>
+            </FormControl>
+        </form>
+
     );
 }
