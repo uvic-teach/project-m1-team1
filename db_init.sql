@@ -1,65 +1,65 @@
 CREATE TABLE Account(
-    AccountId INT IDENTITY PRIMARY KEY
-    ,Username VARCHAR(255) NOT NULL
-    ,Password VARCHAR(255) NOT NULL
-    ,IsDoctor BIT
+    account_id SERIAL PRIMARY KEY
+    ,username VARCHAR(255) NOT NULL
+    ,password VARCHAR(255) NOT NULL
+    ,is_doctor BOOLEAN
 );
 
 CREATE TABLE Patient(
-    PatientId INT IDENTITY PRIMARY KEY
-    ,AccountId INT NOT NULL
-    ,Username VARCHAR(255) NOT NULL
-    ,Name VARCHAR(255) NOT NULL
-    ,Age INT NOT NULL
-    ,Address VARCHAR(255) NOT NULL
-    ,Phone VARCHAR(255) NOT NULL
-    ,CreatedTimestamp DATETIME NOT NULL
-    ,CONSTRAINT fk_patient FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
+    patient_id SERIAL PRIMARY KEY
+    ,account_id INT NOT NULL
+    ,username VARCHAR(255) NOT NULL
+    ,name VARCHAR(255) NOT NULL
+    ,age INT NOT NULL
+    ,address VARCHAR(255) NOT NULL
+    ,phone VARCHAR(255) NOT NULL
+    ,created_timestamp TIMESTAMPTZ NOT NULL
+    ,CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES Account(account_id)
 );
 
 CREATE TABLE Triage(
-    TriageId INT IDENTITY PRIMARY KEY
-    ,PatientId INT NOT NULL
-    ,AccountId INT NOT NULL
-    ,Symptom1 BIT
-    ,Symptom2 BIT
-    ,Symptom3 BIT
-    ,Condition1 BIT
-    ,Condition2 BIT
-    ,Condition3 BIT
-    ,Outcome VARCHAR(255)
-    ,CreatedTimestamp DATETIME
-    ,CONSTRAINT fk_triage1 FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
-    ,CONSTRAINT fk_triage2 FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
+    triage_id SERIAL PRIMARY KEY
+    ,patient_id INT NOT NULL
+    ,account_id INT NOT NULL
+    ,symptom_1 BOOLEAN
+    ,symptom_2 BOOLEAN
+    ,symptom_3 BOOLEAN
+    ,condition_1 BOOLEAN
+    ,condition_2 BOOLEAN
+    ,condition_3 BOOLEAN
+    ,outcome VARCHAR(255)
+    ,created_timestamp TIMESTAMPTZ
+    ,CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES Account(account_id)
+    ,CONSTRAINT fk_patient FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
 );
 
 CREATE TABLE Waitlist(
-    WaitlistId INT IDENTITY PRIMARY KEY
-    ,AccountId INT NOT NULL
-    ,PatientId INT NOT NULL
-    ,BookedDatetime DATETIME
-    ,CONSTRAINT fk_waitlist1 FOREIGN KEY (AccountId) REFERENCES Account(AccountId)
-    ,CONSTRAINT fk_waitlist2 FOREIGN KEY (PatientId) REFERENCES Patient(PatientId)
+    waitlist_id SERIAL PRIMARY KEY
+    ,account_id INT NOT NULL
+    ,patient_id INT NOT NULL
+    ,booked_dt TIMESTAMPTZ
+    ,CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES Account(account_id)
+    ,CONSTRAINT fk_patient FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
 );
 
-INSERT INTO Account(Username, Password, IsDoctor) VALUES
+INSERT INTO Account(username, password, is_doctor) VALUES
     ('test', 'test', NULL)
-    ,('doctor', 'doctor', 1)
-    ,('nurse', 'nurse', 1)
+    ,('doctor', 'doctor', TRUE)
+    ,('nurse', 'nurse', TRUE)
     ;
 
-INSERT INTO Patient(AccountId, Username, Name, Age, Address, Phone, CreatedTimestamp) VALUES
+INSERT INTO Patient(account_id, username, name, age, address, phone, created_timestamp) VALUES
     (
         1,
-        'test@email.com',
+        'test',
         'test',
         42,
         'test rd., victoria',
         '999-999-9999',
-        CAST(GETDATE() as datetime)
-    )
+        NOW()
+    );
 
-INSERT INTO Triage (AccountId, PatientId, Symptom1 ,Symptom2, Symptom3 ,Condition1 ,Condition2 ,Condition3, Outcome ,CreatedTimestamp)
+INSERT INTO Triage (account_id, patient_id, symptom_1, symptom_2, symptom_3, condition_1, condition_2, condition_3, outcome, created_timestamp)
 VALUES (
         1,
         1,
@@ -69,7 +69,7 @@ VALUES (
         NULL,
         NULL,
         NULL,
-        'You\'re Okay',
-        CAST(GETDATE() as datetime)
-    )
+        'You''re Okay',
+        NOW()
+    );
 

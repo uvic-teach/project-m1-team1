@@ -1,7 +1,8 @@
 import datetime
 import os
 
-import pyodbc
+import psycopg2
+import psycopg2.extras
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -16,22 +17,22 @@ CORS(app)
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 jwt = JWTManager(app)
 
-connection_string = os.getenv('AZURE_SQL_CONNECTIONSTRING')
 
 @app.route('/', methods=["GET"])
 @jwt_required()
 def get_waitlist():
     username = get_jwt_identity()
 
-    with get_conn() as conn: 
-        cursor = conn.cursor()
-        
-        cursor.execute("SELECT TOP 1 IsDoctor FROM Account WHERE Username = ?", username)
-        
+    with get_conn() as conn:
+        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+        cursor.execute(
+            "SELECT is_doctor FROM Account WHERE username = %s LIMIT 1", [username])
+
         isDoctor = cursor.fetchone()
-        if (isDoctor.IsDoctor is True):
+        if (isDoctor["is_doctor"] is True):
             cursor.execute(
-                "SELECT w.*, p.Name, p.Age, p.Address, p.Phone FROM Waitlist w JOIN Patient p ON w.PatientId = p.PatientId")
+                "SELECT w.*, p.name, p.age, p.address, p.phone FROM Waitlist w JOIN Patient p ON w.patient_id = p.patient_id")
             data = []
             columns = [column[0] for column in cursor.description]
 
@@ -40,79 +41,85 @@ def get_waitlist():
 
             return jsonify(data), 200
         else:
-            getPatientQuery = " SELECT WaitlistId FROM Waitlist WHERE AccountId = (SELECT AccountId FROM Account WHERE Username = ?)"
+            getPatientQuery = " SELECT waitlist_id FROM Waitlist WHERE account_id = (SELECT account_id FROM Account WHERE username = %s)"
 
-            cursor.execute(getPatientQuery, username)
+            cursor.execute(getPatientQuery, [username])
             patientInfo = cursor.fetchone()
 
-            if(patientInfo is None):
-                cursor.execute("SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ?", datetime.date.today())
-            
+            if patientInfo:
+                query = "SELECT COUNT(*) AS c FROM Waitlist WHERE CAST(booked_dt AS DATE) = %s AND waitlist_id < %s"
+                cursor.execute(
+                    query, [datetime.date.today(), patientInfo["waitlist_id"]])
             else:
-                query ="SELECT COUNT(*) as C FROM Waitlist WHERE CAST(BookedDatetime AS DATE) = ? AND WaitlistId < ?"
-                cursor.execute(query, (datetime.date.today(), patientInfo.WaitlistId))
-            
+                cursor.execute(
+                    "SELECT COUNT(*) AS c FROM Waitlist WHERE CAST(booked_dt AS DATE) = %s", [datetime.date.today()])
+
             db_data = cursor.fetchone()
-
-            if(db_data.C <= 0):
-                return jsonify({"message": "Waitlist is empty."}), 200 
-            else: 
-                return jsonify({"Number of patients ahead": db_data.C}), 200
-
+            if (db_data["c"] <= 0):
+                return jsonify({"message": "Waitlist is empty."}), 200
+            else:
+                return jsonify({"Number of patients ahead": db_data["C"]}), 200
 
 
 @app.route('/', methods=["POST"])
 @jwt_required()
-def enter_waitlist():       
-    
+def enter_waitlist():
     username = get_jwt_identity()
 
-    with get_conn() as conn: 
-        cursor = conn.cursor()
-        getPatientQuery = "SELECT AccountId, PatientId FROM Patient where Username = ?"
+    with get_conn() as conn:
+        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        getPatientQuery = "SELECT account_id, patient_id FROM Patient where username = %s"
         getPatientQueryParam = [username]
 
         cursor.execute(getPatientQuery, getPatientQueryParam)
         patientInfo = cursor.fetchone()
 
-        cursor.execute("SELECT * FROM Waitlist where AccountId = ?", patientInfo.AccountId)
-        
+        cursor.execute(
+            "SELECT * FROM Waitlist where account_id = %s", [patientInfo["account_id"]])
+
         if cursor.fetchone() is None:
 
-            query = "INSERT INTO Waitlist (AccountId , PatientId , BookedDateTime ) VALUES ( ?, ?, ?)"
-            cursor.execute(query, (patientInfo.AccountId, patientInfo.PatientId, datetime.datetime.now()))
-            cursor.commit()
+            query = "INSERT INTO Waitlist (account_id, patient_id, booked_dt) VALUES ( %s, %s, %s)"
+            cursor.execute(query, [patientInfo["account_id"],
+                           patientInfo["patient_id"], datetime.datetime.now()])
+            conn.commit()
 
             return jsonify({"message": "You have been added to the waitlist"}), 200
 
-        else: return  jsonify({"message": "You are already in the waitlist"}), 400
+        else:
+            return jsonify({"message": "You are already in the waitlist"}), 400
 
-    
+
 @app.route('/', methods=["DELETE"])
 @jwt_required()
-
 def remove_from_waitlist():
-
     username = get_jwt_identity()
     waitlistId = request.json.get("waitlistId", None)
 
-    with get_conn() as conn: 
-        cursor = conn.cursor()
-        cursor.execute("SELECT IsDoctor as Doc FROM Account where Username = ?", username)
+    with get_conn() as conn:
+        cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cursor.execute(
+            "SELECT is_doctor FROM Account WHERE username = %s", [username])
         user = cursor.fetchone()
 
-        if(user.Doc == 1):
-
-            cursor.execute("DELETE FROM Waitlist where WaitlistId = ? ", waitlistId)
+        if (user["is_doctor"] is True):
+            cursor.execute(
+                "DELETE FROM Waitlist where waitlist_id = %s ", [waitlistId])
             return jsonify({"message": f"Patient {waitlistId} removed from waitlist"}), 200
-        
-        else: 
 
+        else:
             return jsonify({"message": "Unauthorized Access"}), 400
 
 
 def get_conn():
-    return pyodbc.connect(os.getenv('AZURE_SQL_CONNECTIONSTRING'))
+    return psycopg2.connect(
+        user = os.getenv('db_username'),
+        password = os.getenv('db_password'),
+        host = os.getenv('db_host'),
+        port = os.getenv('db_port'),
+        database = os.getenv('db_database'),
+        sslmode = os.getenv('db_sslmode'))
+
 
 if __name__ == "__main__":
     load_dotenv()
