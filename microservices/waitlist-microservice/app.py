@@ -58,7 +58,7 @@ def get_waitlist():
             if (db_data["c"] <= 0):
                 return jsonify({"message": "Waitlist is empty."}), 200
             else:
-                return jsonify({"Number of patients ahead": db_data["C"]}), 200
+                return jsonify({"Number of patients ahead": db_data["c"]}), 200
 
 
 @app.route('/', methods=["POST"])

@@ -32,7 +32,7 @@ function Login() {
     console.log(res);
 
     if (res.status === 200) {
-      console.log(res.data.auth_token);
+      localStorage.setItem('token', res.data.auth_token);
       navigate("/homepage");
     } else {
       navigate("/")
