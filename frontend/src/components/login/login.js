@@ -38,7 +38,6 @@ function Login() {
   }
 
   async function loginRequest() {
-
     loginInfo.username = UserName
     loginInfo.password = Password
     try{
