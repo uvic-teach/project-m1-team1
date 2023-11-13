@@ -5,7 +5,6 @@ import logo from "./medLogo.svg"
 
 function Homepage() {
 
-
   const items = [
     { id: 1, feature: "Waitlist" },
     { id: 2, feature: "Triage" },

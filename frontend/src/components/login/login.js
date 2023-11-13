@@ -4,16 +4,22 @@ import logo from "./medLogo.svg";
 import { useState } from "react";
 import axios from 'axios';
 import { TextField, Button } from '@mui/material';
+
 import { useAuth } from "../../context/auth_provider";
 import { useNavigate } from "react-router-dom";
+
+import ErrorBoundary from "../../error_page";
+
 function Login() {
   //const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
   
 
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
+
   const {setToken} = useAuth();
   const navigate = useNavigate();
+
   function UserNameHandler(event) {
     setUserName(event.target.value)
   }
@@ -32,6 +38,7 @@ function Login() {
   }
 
   async function loginRequest() {
+
     loginInfo.username = UserName
     loginInfo.password = Password
     try{
@@ -43,12 +50,16 @@ function Login() {
         navigate("/", {replace: true});
         
       })
-  }
-  catch(e){
+    }
     
+  
+  catch(e){
+    return <ErrorBoundary />
   }
     
      
+
+  
   }
 
   return (
