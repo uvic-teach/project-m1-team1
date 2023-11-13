@@ -4,11 +4,12 @@ import "./items.css"
 import logo from "./medLogo.svg";
 import { useNavigate } from "react-router-dom";
 import {Button} from '@mui/material';
+import { useAuth } from "../../context/AuthProvider";
 
 
 function Homepage() {
   const navigate = useNavigate();
-
+  const {setToken} = useAuth();
   const handleWaitlist = () => {
     navigate("/waitlist");
   };
@@ -16,6 +17,12 @@ function Homepage() {
   const handleTriage = () => {
     navigate("/triage");
   };
+  const handleLogout =()=>{
+    
+    setToken();
+    setTimeout(navigate("/login", {replace:true}), 3000);
+    
+}
 
   return (
     <div className="HomePage">
@@ -29,6 +36,9 @@ function Homepage() {
         </div>
         <div className='link'>
           <Button variant='contained' onClick={handleTriage}>Triage</Button>
+        </div>
+        <div className='link'>
+          <Button variant='contained' onClick={handleLogout}>Logout</Button>
         </div>
       </div>
     </div>

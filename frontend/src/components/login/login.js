@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
 
 function Login() {
   const [username, setUserName] = useState("");
@@ -25,6 +26,7 @@ function Login() {
     }
   }
 
+  const {setToken} = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -32,11 +34,16 @@ function Login() {
     console.log(res);
 
     if (res.status === 200) {
-      localStorage.setItem('token', res.data.auth_token);
-      navigate("/homepage");
-    } else {
-      navigate("/")
-    }
+      console.log(res.data.auth_token);
+      setToken(res.data.auth_token);
+      //navigate("/homepage");     
+      navigate("/", {replace: true});
+
+    } 
+    // else {
+    //   // navigate("/")
+    
+    // }
   };
 
   return (
