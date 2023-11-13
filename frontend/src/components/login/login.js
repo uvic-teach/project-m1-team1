@@ -2,28 +2,18 @@ import React from "react";
 import "./login.css";
 import logo from "./medLogo.svg";
 import { useState } from "react";
-<<<<<<< HEAD
 import axios from 'axios';
 import { TextField, Button } from '@mui/material';
-=======
-import axios from "axios";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/auth_provider";
 import { useNavigate } from "react-router-dom";
-import ErrorPage from "../../error_page";
-import ErrorBoundary from "../../error_page";
->>>>>>> 651552a (fixed homepage bug)
-
 function Login() {
   //const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
   
 
   const [UserName, setUserName] = useState("");
   const [Password, setPassword] = useState("");
-<<<<<<< HEAD
-=======
+  const {setToken} = useAuth();
   const navigate = useNavigate();
->>>>>>> 651552a (fixed homepage bug)
-
   function UserNameHandler(event) {
     setUserName(event.target.value)
   }
@@ -42,39 +32,20 @@ function Login() {
   }
 
   async function loginRequest() {
-<<<<<<< HEAD
     loginInfo.username = UserName
     loginInfo.password = Password
-
-    axios.post('https://seng350-team1-auth.azurewebsites.net/login', loginInfo)
+    try{
+    axios.post('https://auth-microservice-l5b7m.ondigitalocean.app/', loginInfo)
       .then(res => {
         console.log(res);
         console.log(res.data);
+        setToken(res.data['auth_token']);
+        navigate("/", {replace: true});
+        
       })
-=======
-    loginInfo.username = UserName;
-    loginInfo.password = Password;
-  
-  try{
-    const response = await axios
-      .post("https://seng350-team1-auth.azurewebsites.net/login", loginInfo);
-      
-      if(response?.status === 200){
-        setIsLoggedIn(true);
-        setAuthUser({
-            username: UserName,
-            authToken: response.data['auth_token']
-
-        });
-
-        console.log(authUser);
-        navigate("/home");
-    }
-      
->>>>>>> 651552a (fixed homepage bug)
   }
   catch(e){
-    return <ErrorPage />
+    
   }
     
      
