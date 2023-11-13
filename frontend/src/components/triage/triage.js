@@ -1,12 +1,9 @@
 import * as React from "react";
-import "./waitlist.css";
-import WaitTable from "./table.js";
 import logo from './medLogo.svg';
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid';
+import TriageForm from "./form";
 
-
-
-function WaitList() {
+export default function Triage() {
     return (
         <Grid>
             <Grid container direction="row">
@@ -17,11 +14,9 @@ function WaitList() {
                     <h2>Mister ED</h2>
                 </Grid>
             </Grid>
-            <Grid sx={{mt:1, mx:3}}>
-                <WaitTable/>
+            <Grid sx={{ mt: 1, mx: 3 }}>
+                <TriageForm/>
             </Grid>
         </Grid>
     );
 }
-
-export default WaitList;
