@@ -1,42 +1,43 @@
 import React from "react";
-import './login.css';
-import logo from './medLogo.svg';
+import "./login.css";
+import logo from "./medLogo.svg";
 import { useState } from "react";
-import axios from 'axios';
-import { TextField, Button } from '@mui/material';
+import axios from "axios";
+import { TextField, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [UserName, setUserName] = useState("");
-  const [Password, setPassword] = useState("");
-
-  function UserNameHandler(event) {
-    setUserName(event.target.value)
+  async function loginUser(credentials) {
+    try {
+      let res = await axios.post(
+        "https://auth-microservice-l5b7m.ondigitalocean.app/login",
+        {
+          username: credentials.username,
+          password: credentials.password,
+        }
+      );
+      return res;
+    } catch (error) {
+      return error;
+    }
   }
 
-  function PasswordHandler(event) {
-    setPassword(event.target.value)
-  }
+  const navigate = useNavigate();
 
-  function PrintUserName() {
-    console.log(UserName)
-  }
+  const handleLogin = async () => {
+    const res = await loginUser({ username, password });
+    console.log(res);
 
-  var loginInfo = {
-    "username": "",
-    "password": ""
-  }
-
-  async function loginRequest() {
-    loginInfo.username = UserName
-    loginInfo.password = Password
-
-    axios.post('https://seng350-team1-auth.azurewebsites.net/login', loginInfo)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-  }
+    if (res.status === 200) {
+      console.log(res.data.auth_token);
+      navigate("/homepage");
+    } else {
+      navigate("/")
+    }
+  };
 
   return (
     <div className="loginPage">
@@ -51,23 +52,24 @@ function Login() {
           <TextField 
           label='Username' 
           id="outlined-required"
-          value={UserName}
-          onChange={UserNameHandler}
+          value={username}
+          onChange={(e) => setUserName(e.target.value)}
           ></TextField>
         </div>
         <div className="Text-Box">
           <TextField 
           label='Password' 
-          id="outlined-required"
-          value={Password}
-          onChange={PasswordHandler}
+          id="outlined-adornment-password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           ></TextField>
         </div>
         <div className="Login-Buttons">
           <Button variant="contained">Register</Button>
           <Button 
           variant="contained"
-          onClick={loginRequest}
+          onClick={handleLogin}
           >Login</Button>
         </div>
       </div>
@@ -76,4 +78,3 @@ function Login() {
 }
 
 export default Login;
-
