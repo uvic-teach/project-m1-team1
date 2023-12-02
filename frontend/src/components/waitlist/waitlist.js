@@ -18,7 +18,7 @@ function WaitList() {
     try {
       let res = await axios.get(
         "https://waitlist-microservice-nquae.ondigitalocean.app/",
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${JSON.parse(token)}` } }
       );
 
       console.log(res.data);
@@ -31,12 +31,12 @@ function WaitList() {
   async function enterWaitlist(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");
-    const headers = { Authorization: `Bearer ${token}` };
+    const headers = { Authorization: `Bearer ${JSON.parse(token)}` };
     try {
       let res = await axios.post(
         "https://waitlist-microservice-nquae.ondigitalocean.app/",
         null,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${JSON.parse(token)}` } }
       );
       console.log(res.request);
 
@@ -54,7 +54,7 @@ function WaitList() {
       let res = await axios.delete(
         "https://waitlist-microservice-nquae.ondigitalocean.app/",
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
           data: { waitlistId: waitlistId },
         }
       );
