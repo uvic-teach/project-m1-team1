@@ -5,6 +5,7 @@ import Homepage from "../components/homepage/homepage";
 import Login from "../components/login/login";
 import Triage from "../components/triage/triage";
 import WaitList from "../components/waitlist/waitlist";
+import Registration from "../components/registration/registration";
 const Routes = () => {
   const { token } = useAuth();
 
@@ -23,12 +24,12 @@ const Routes = () => {
         },
         {
           path: "/triage",
-          element: <Triage/>
+          element: <Triage />,
         },
         {
-            path: "/login",
-            element: <Login />,
-          },
+          path: "/login",
+          element: <Login />,
+        }
       ],
     },
   ];
@@ -38,13 +39,15 @@ const Routes = () => {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/register",
+      element: <Registration />,
+    }
   ];
-  
 
   const router = createBrowserRouter([
     ...(!token ? routesForNotAuthenticatedOnly : []),
     ...routesForAuthenticatedOnly,
-    
   ]);
 
   // Provide the router configuration using RouterProvider
@@ -52,4 +55,3 @@ const Routes = () => {
 };
 
 export default Routes;
-

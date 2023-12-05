@@ -26,7 +26,7 @@ function Login() {
     }
   }
 
-  const {setToken} = useAuth();
+  const { setToken } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -36,51 +36,53 @@ function Login() {
     if (res.status === 200) {
       console.log(res.data.auth_token);
       setToken(res.data.auth_token);
-      //navigate("/homepage");     
-      navigate("/", {replace: true});
-
-    } 
+      //navigate("/homepage");
+      navigate("/", { replace: true });
+    }
     // else {
     //   // navigate("/")
-    
+
     // }
+  };
+
+  const handleRegistration = async () => {
+    navigate("/register", { replace: true });
   };
 
   return (
     <div className="loginPage">
       <header className="Login-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Mister ED
-        </p>
+        <p>Mister ED</p>
       </header>
       <div className="Login-Text-Area">
         <div className="Text-Box">
-          <TextField 
-          label='Username' 
-          id="outlined-required"
-          value={username}
-          onChange={(e) => setUserName(e.target.value)}
+          <TextField
+            label="Username"
+            id="outlined-required"
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
           ></TextField>
         </div>
         <div className="Text-Box">
-          <TextField 
-          label='Password' 
-          id="outlined-adornment-password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          <TextField
+            label="Password"
+            id="outlined-adornment-password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           ></TextField>
         </div>
         <div className="Login-Buttons">
-          <Button variant="contained">Register</Button>
-          <Button 
-          variant="contained"
-          onClick={handleLogin}
-          >Login</Button>
+          <Button variant="contained" onClick={handleRegistration}>
+            Register
+          </Button>
+          <Button variant="contained" onClick={handleLogin}>
+            Login
+          </Button>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

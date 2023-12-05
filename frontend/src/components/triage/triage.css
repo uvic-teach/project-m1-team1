@@ -1,0 +1,41 @@
+.form{
+  background-color: white;
+  border-radius: 5px;
+  width: 550px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.form-body{
+  text-align: left;
+  padding: 20px 10px;
+}
+
+.form-body > *{
+  padding: 5px;
+}
+
+.form__label {
+  display:inline-block;
+  width: 25%;
+  text-align: left;
+  margin: 1%;
+}
+.form__input {
+  display:inline-block;
+  width: 60%;
+  margin: 1%;
+}​
+
+footer {
+  text-align: center;
+}
+
+.btn {
+  background: grey;
+  border-radius: 5px;
+  font-size: larger;
+  display: inline-block;
+  padding: 5px;
+  margin: 10px auto;
+}
