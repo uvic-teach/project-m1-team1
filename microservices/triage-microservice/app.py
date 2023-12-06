@@ -80,12 +80,6 @@ def create_form():
         outcome = ''
         if (all(i is not None for i in [s1, s2, s3, c1, c2, c3])):
             outcome = 'ED. You\'ve been added to the waitlist.'
-            token = request.headers["Authorization"].split(" ")[1]
-            headers = {
-                'Authorization': f"Bearer {token}",
-                'Content-Type': 'application/json'
-            }
-            requests.request("POST", "http://localhost:5002", headers=headers)
         elif (all(i is None for i in [s1, s2, s3, c1, c2, c3])):
             outcome = 'You\'re Okay'
         elif (

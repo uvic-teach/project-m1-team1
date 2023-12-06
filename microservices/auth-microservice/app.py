@@ -40,6 +40,7 @@ def login():
         response = {
             "status": "success",
             "message": f"Successfully logged in as {username}",
+            "role": f'''{db_data["is_doctor"]}''',
             "auth_token": create_access_token(identity=username)
         }
         return jsonify(response), 200
