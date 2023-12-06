@@ -29,9 +29,6 @@ function Homepage() {
     
 }
 
-
-
-
   return (
     <div className="HomePage">
       <header className="Home-header">

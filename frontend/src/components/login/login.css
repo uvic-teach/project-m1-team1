@@ -44,4 +44,8 @@
     margin-top: 2vh;
     margin-inline: 40vw;
   }
+  .Error{
+    text-align: center;
+    color: red;
+  }
   

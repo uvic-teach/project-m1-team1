@@ -10,8 +10,11 @@ import { useAuth } from "../../context/AuthProvider";
 function Login() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState();
 
-  async function loginUser(credentials) {
+
+
+      async function loginUser(credentials) {
     try {
       let res = await axios.post(
         "https://auth-microservice-l5b7m.ondigitalocean.app/login",
@@ -23,14 +26,14 @@ function Login() {
       return res;
     } catch (error) {
       return error;
-    }
+        }
   }
 
   const { setToken } = useAuth();
   
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+const handleLogin = async () => {
     const res = await loginUser({ username, password });
     console.log(res);
 
@@ -41,10 +44,10 @@ function Login() {
       //navigate("/homepage");
       navigate("/", { replace: true });
     }
-    // else {
-    //   // navigate("/")
+     else {
+     setError('Invalid Username or Password');
 
-    // }
+     }
   };
 
   const handleRegistration = async () => {
@@ -58,6 +61,7 @@ function Login() {
         <p>Mister ED</p>
       </header>
       <div className="Login-Text-Area">
+     
         <div className="Text-Box">
           <TextField
             label="Username"
@@ -65,6 +69,7 @@ function Login() {
             value={username}
             onChange={(e) => setUserName(e.target.value)}
           ></TextField>
+           
         </div>
         <div className="Text-Box">
           <TextField
@@ -74,7 +79,9 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></TextField>
+           
         </div>
+        <div className="Error">{error? <label>{error}</label>: null}</div>
         <div className="Login-Buttons">
           <Button variant="contained" onClick={handleRegistration}>
             Register
@@ -82,10 +89,12 @@ function Login() {
           <Button variant="contained" onClick={handleLogin}>
             Login
           </Button>
+         
         </div>
       </div>
     </div>
   );
 }
+
 
 export default Login;
