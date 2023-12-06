@@ -27,6 +27,7 @@ function Login() {
   }
 
   const { setToken } = useAuth();
+  
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -36,6 +37,7 @@ function Login() {
     if (res.status === 200) {
       console.log(res.data.auth_token);
       setToken(res.data.auth_token);
+      localStorage.setItem('role', res.data.role);
       //navigate("/homepage");
       navigate("/", { replace: true });
     }

@@ -15,7 +15,12 @@ function Homepage() {
   };
 
   const handleTriage = () => {
-    navigate("/triage");
+    if(localStorage.getItem('role') == 'None'){
+      navigate("/triage");
+    }
+    else{
+      navigate("/doctorTriage")
+    }
   };
   const handleLogout =()=>{
     
@@ -23,6 +28,9 @@ function Homepage() {
     setTimeout(navigate("/login", {replace:true}), 3000);
     
 }
+
+
+
 
   return (
     <div className="HomePage">
@@ -34,7 +42,7 @@ function Homepage() {
         <div className='link'>
           <Button variant='contained' onClick={handleWaitlist}>WaitList</Button>
         </div>
-        <div className='link'>
+        <div className='link' >
           <Button variant='contained' onClick={handleTriage}>Triage</Button>
         </div>
         <div className='link'>
