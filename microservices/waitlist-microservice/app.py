@@ -49,10 +49,10 @@ def get_waitlist():
             if patientInfo:
                 query = "SELECT COUNT(*) AS c FROM Waitlist WHERE waitlist_id < %s"
                 cursor.execute(
-                    query, [datetime.date.today(), patientInfo["waitlist_id"]])
+                    query, [patientInfo["waitlist_id"]])
             else:
                 cursor.execute(
-                    "SELECT COUNT(*) AS c FROM Waitlist", [datetime.date.today()])
+                    "SELECT COUNT(*) AS c FROM Waitlist")
 
             db_data = cursor.fetchone()
             if (db_data["c"] <= 0):

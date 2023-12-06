@@ -16,14 +16,6 @@ function Triage() {
     }
   }
 
-  // const handleSubmit = () => {
-  //   for (let i = 0; i < allchecked.length; i++) {
-  //     body[allchecked[i]] = "true";
-  //   }
-  //   console.log(body);
-  //   console.log(allchecked);
-  // };
-
   async function handleSubmitTriage() {
     const body = {
       Symptom1: null,
