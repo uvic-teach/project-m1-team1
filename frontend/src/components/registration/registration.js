@@ -12,6 +12,8 @@ function Registration() {
   const [address, setAddress] = useState(null);
   const [phone, setPhone] = useState(null);
 
+  const [errorMessage, setErrorMessage] = React.useState("");
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     if (id === "username") {
@@ -47,11 +49,12 @@ function Registration() {
           name: data.name,
           age: data.age,
           address: data.address,
-          phone: data.phone
+          phone: data.phone,
         }
       );
       return res;
     } catch (error) {
+      console.log(error.response.data.message);
       return error;
     }
   }
@@ -59,33 +62,47 @@ function Registration() {
   const navigate = useNavigate();
 
   const handleRegistration = async () => {
-    const res = await registerUser({
+    if (
+      username === null ||
+      password === null ||
+      name === null ||
+      age === null ||
+      address === null ||
+      phone === null
+    ) {
+      setErrorMessage("Some fields are null");
+    } else {
+      const res = await registerUser({
         username,
         password,
         name,
         age,
         address,
-        phone
-    });
-    console.log(res);
+        phone,
+      });
+      console.log(res);
 
-    if (res.status === 201) {
-      console.log("Registration OK!");
-      navigate("/", { replace: true });
+      if (res.status === 201) {
+        console.log("Registration OK!");
+        navigate("/", { replace: true });
+      }
+
+      if (res.response.status === 401) {
+        console.log(res.response.data.message);
+        setErrorMessage(res.response.data.message);
+      }
     }
   };
 
-  const handleSubmit = () => {
-    console.log(username, password, confirmPassword, name, age, address, phone);
+  const handleCancelRegistration = () => {
+    navigate("/", { replace: true });
   };
 
   return (
     <div className="form">
       <div className="form-body">
         <div className="username">
-          <label className="form__label">
-            Username{" "}
-          </label>
+          <label className="form__label">Username </label>
           <input
             className="form__input"
             type="text"
@@ -96,9 +113,7 @@ function Registration() {
           />
         </div>
         <div className="password">
-          <label className="form__label">
-            Password{" "}
-          </label>
+          <label className="form__label">Password </label>
           <input
             className="form__input"
             type="password"
@@ -109,9 +124,7 @@ function Registration() {
           />
         </div>
         <div className="confirm-password">
-          <label className="form__label">
-            Confirm Password{" "}
-          </label>
+          <label className="form__label">Confirm Password </label>
           <input
             className="form__input"
             type="password"
@@ -122,9 +135,7 @@ function Registration() {
           />
         </div>
         <div className="name">
-          <label className="form__label">
-            Full Name{" "}
-          </label>
+          <label className="form__label">Full Name </label>
           <input
             className="form__input"
             type="text"
@@ -135,9 +146,7 @@ function Registration() {
           />
         </div>
         <div className="age">
-          <label className="form__label">
-            Age{" "}
-          </label>
+          <label className="form__label">Age </label>
           <input
             className="form__input"
             type="text"
@@ -148,9 +157,7 @@ function Registration() {
           />
         </div>
         <div className="address">
-          <label className="form__label">
-            Address{" "}
-          </label>
+          <label className="form__label">Address </label>
           <input
             className="form__input"
             type="text"
@@ -161,9 +168,7 @@ function Registration() {
           />
         </div>
         <div className="phone">
-          <label className="form__label">
-            Phone Number{" "}
-          </label>
+          <label className="form__label">Phone Number </label>
           <input
             className="form__input"
             type="text"
@@ -174,8 +179,21 @@ function Registration() {
           />
         </div>
       </div>
+      {errorMessage && <div className="error"> {errorMessage} </div>}
       <div class="footer">
-        <button onClick={() => handleRegistration()} type="submit" class="btn">
+        <button
+          onClick={() => handleCancelRegistration()}
+          type="submit"
+          class="btn-left"
+        >
+          Cancel
+        </button>
+        <div class="divider" />
+        <button
+          onClick={() => handleRegistration()}
+          type="submit"
+          class="btn-right"
+        >
           Register
         </button>
       </div>
