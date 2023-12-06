@@ -47,12 +47,12 @@ def get_waitlist():
             patientInfo = cursor.fetchone()
 
             if patientInfo:
-                query = "SELECT COUNT(*) AS c FROM Waitlist WHERE CAST(booked_dt AS DATE) = %s AND waitlist_id < %s"
+                query = "SELECT COUNT(*) AS c FROM Waitlist WHERE waitlist_id < %s"
                 cursor.execute(
                     query, [datetime.date.today(), patientInfo["waitlist_id"]])
             else:
                 cursor.execute(
-                    "SELECT COUNT(*) AS c FROM Waitlist WHERE CAST(booked_dt AS DATE) = %s", [datetime.date.today()])
+                    "SELECT COUNT(*) AS c FROM Waitlist", [datetime.date.today()])
 
             db_data = cursor.fetchone()
             if (db_data["c"] <= 0):
@@ -99,16 +99,17 @@ def remove_from_waitlist():
     with get_conn() as conn:
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cursor.execute(
-            "SELECT is_doctor FROM Account WHERE username = %s", [username])
+            "SELECT is_doctor, account_id FROM Account WHERE username = %s", [username])
         user = cursor.fetchone()
 
         if (user["is_doctor"] is True):
             cursor.execute(
                 "DELETE FROM Waitlist where waitlist_id = %s ", [waitlistId])
             return jsonify({"message": f"Patient {waitlistId} removed from waitlist"}), 200
-
         else:
-            return jsonify({"message": "Unauthorized Access"}), 400
+            cursor.execute(
+                "DELETE FROM Waitlist where account_id = %s ", [user["account_id"]])
+            return jsonify({"message": f"You've been removed from waitlist"}), 200
 
 
 def get_conn():

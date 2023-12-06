@@ -32,29 +32,44 @@ def get_form():
 
     with get_conn() as conn:
         cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cursor.execute(
+            "SELECT is_doctor FROM Account WHERE username = %s", [username])
+        user = cursor.fetchone()
 
-        getPatientQuery = "SELECT account_id, patient_id FROM Patient WHERE username=%s LIMIT 1"
-        getPatientQueryParam = [username]
-        cursor.execute(getPatientQuery, getPatientQueryParam)
-        patientInfo = cursor.fetchone()
-        print(patientInfo)
-
-        getTriagesQuery = "SELECT * FROM Triage WHERE account_id = %s AND patient_id = %s ORDER BY created_timestamp DESC"
-        cursor.execute(getTriagesQuery, [
-                       patientInfo["account_id"], patientInfo["patient_id"]])
-        db_data = cursor.fetchall()
-        print(db_data)
-
-        if db_data:
+        if (user["is_doctor"] is True):
+            cursor.execute(
+                "SELECT * FROM Triage ORDER BY patient_id"
+            )
             data = []
             columns = [column[0] for column in cursor.description]
 
-            for row in db_data:
+            for row in cursor.fetchall():
                 data.append(dict(zip(columns, row)))
 
             return jsonify(data), 200
         else:
-            return jsonify({"message": "You haven't completed any forms."}), 200
+            getPatientQuery = "SELECT account_id, patient_id FROM Patient WHERE username=%s LIMIT 1"
+            getPatientQueryParam = [username]
+            cursor.execute(getPatientQuery, getPatientQueryParam)
+            patientInfo = cursor.fetchone()
+            print(patientInfo)
+
+            getTriagesQuery = "SELECT * FROM Triage WHERE account_id = %s AND patient_id = %s ORDER BY created_timestamp DESC"
+            cursor.execute(getTriagesQuery, [
+                        patientInfo["account_id"], patientInfo["patient_id"]])
+            db_data = cursor.fetchall()
+            print(db_data)
+
+            if db_data:
+                data = []
+                columns = [column[0] for column in cursor.description]
+
+                for row in db_data:
+                    data.append(dict(zip(columns, row)))
+
+                return jsonify(data), 200
+            else:
+                return jsonify({"message": "You haven't completed any forms."}), 200
 
 @app.route("/form", methods=["POST"])
 @jwt_required()
