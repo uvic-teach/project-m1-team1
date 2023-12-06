@@ -94,7 +94,7 @@ def create_form():
 
         outcome = ''
         if (all(i is not None for i in [s1, s2, s3, c1, c2, c3])):
-            outcome = 'ED. You\'ve been added to the waitlist.'
+            outcome = 'ED. Please add yourself to the waitlist.'
         elif (all(i is None for i in [s1, s2, s3, c1, c2, c3])):
             outcome = 'You\'re Okay'
         elif (
