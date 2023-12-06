@@ -47,24 +47,24 @@ function WaitList() {
     }
   }
 
-  async function removeFromWaitlist(event) {
-    event.preventDefault();
-    const token = localStorage.getItem("token");
-    try {
-      let res = await axios.delete(
-        "https://waitlist-microservice-nquae.ondigitalocean.app/",
-        {
-          headers: { Authorization: `Bearer ${JSON.parse(token)}` },
-          data: { waitlistId: waitlistId },
-        }
-      );
+  // async function removeFromWaitlist(event) {
+  //   event.preventDefault();
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     let res = await axios.delete(
+  //       "https://waitlist-microservice-nquae.ondigitalocean.app/",
+  //       {
+  //         headers: { Authorization: `Bearer ${JSON.parse(token)}` },
+  //         data: { waitlistId: waitlistId },
+  //       }
+  //     );
 
-      console.log(res.data);
-      setJsonResponse(await JSON.stringify(res.data));
-    } catch (error) {
-      setJsonResponse(JSON.stringify(error));
-    }
-  }
+  //     console.log(res.data);
+  //     setJsonResponse(await JSON.stringify(res.data));
+  //   } catch (error) {
+  //     setJsonResponse(JSON.stringify(error));
+  //   }
+  // }
 
   return (
     <div>
@@ -74,18 +74,6 @@ function WaitList() {
       <div>
         <button onClick={enterWaitlist}>Enter Waitlist</button>
       </div>
-      <form onSubmit={removeFromWaitlist}>
-        <label>
-          <input
-            placeholder="WaitList Id"
-            type="text"
-            onChange={(e) => setWaitlistId(e.target.value)}
-          />
-        </label>
-        <div>
-          <button type="submit">Remove Patient</button>
-        </div>
-      </form>
       <JSONPretty
         style={{ fontSize: "2em" }}
         id="json-pretty"

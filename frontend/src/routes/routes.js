@@ -7,6 +7,7 @@ import Triage from "../components/triage/triage";
 import WaitList from "../components/waitlist/waitlist";
 import Registration from "../components/registration/registration";
 import DoctorTriage from "../components/triage/doctorTriage";
+import DoctorWaitlist from "../components/waitlist/doctorWaitlist";
 const Routes = () => {
   const { token } = useAuth();
 
@@ -34,6 +35,10 @@ const Routes = () => {
         {
           path: '/doctorTriage',
           element: <DoctorTriage/>
+        },
+        {
+          path: '/doctorWaitlist',
+          element: <DoctorWaitlist/>
         }
       ],
     },

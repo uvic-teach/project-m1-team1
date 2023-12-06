@@ -11,7 +11,12 @@ function Homepage() {
   const navigate = useNavigate();
   const {setToken} = useAuth();
   const handleWaitlist = () => {
-    navigate("/waitlist");
+    if(localStorage.getItem('role') == 'None'){
+      navigate("/waitlist");
+    }
+    else{
+      navigate("/doctorWaitlist")
+    }
   };
 
   const handleTriage = () => {
