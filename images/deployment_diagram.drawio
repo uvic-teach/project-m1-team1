@@ -1,14 +1,14 @@
-<mxfile host="app.diagrams.net" modified="2023-11-26T23:34:03.436Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="AZPYRPmHfbqbYbE864_F" version="22.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2023-12-07T03:02:58.258Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="2NUfqLmhzG72g8_6K6bZ" version="22.1.7" type="github">
   <diagram name="Page-1" id="YVCHDtTJ3HeiU3hXeIPN">
     <mxGraphModel dx="2074" dy="1118" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="--JE3dBzEUqlvVUsnqfo-1" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt; &lt;b&gt;Digital Ocean App Platform&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="40" y="40" width="580" height="610" as="geometry" />
+          <mxGeometry x="425" y="50" width="840" height="610" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-20" value="" style="group" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="80" y="130" width="260" height="120" as="geometry" />
+          <mxGeometry x="725" y="140" width="260" height="120" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-7" value="&amp;lt;&amp;lt;execution environment&amp;gt;&amp;gt; &lt;b&gt;Waitlist&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-20" vertex="1">
           <mxGeometry width="260" height="120" as="geometry" />
@@ -17,7 +17,7 @@
           <mxGeometry x="55" y="40" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-21" value="" style="group" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="70" y="440" width="260" height="120" as="geometry" />
+          <mxGeometry x="715" y="450" width="260" height="120" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-6" value="&amp;lt;&amp;lt;execution environment&amp;gt;&amp;gt; &lt;b&gt;Triage&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-21" vertex="1">
           <mxGeometry width="260" height="120" as="geometry" />
@@ -26,7 +26,7 @@
           <mxGeometry x="50" y="50" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-22" value="" style="group" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="330" y="285" width="260" height="120" as="geometry" />
+          <mxGeometry x="975" y="295" width="260" height="120" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-3" value="&amp;lt;&amp;lt;execution environment&amp;gt;&amp;gt; &lt;b&gt;Auth&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-22" vertex="1">
           <mxGeometry width="260" height="120" as="geometry" />
@@ -67,9 +67,9 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-33" value="" style="group" parent="1" vertex="1" connectable="0">
-          <mxGeometry x="770" y="145" width="310" height="420" as="geometry" />
+          <mxGeometry x="1380" y="150" width="310" height="420" as="geometry" />
         </mxCell>
-        <mxCell id="--JE3dBzEUqlvVUsnqfo-15" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt; &lt;b&gt;Digital Ocean Server&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-33" vertex="1">
+        <mxCell id="--JE3dBzEUqlvVUsnqfo-15" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt; &lt;b&gt;Digital Ocean Database Server&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-33" vertex="1">
           <mxGeometry y="-5" width="310" height="425" as="geometry" />
         </mxCell>
         <mxCell id="--JE3dBzEUqlvVUsnqfo-16" value="&amp;lt;&amp;lt;database system&amp;gt;&amp;gt; &lt;b&gt;PgSQL Server&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-33" vertex="1">
@@ -86,6 +86,60 @@
         </mxCell>
         <mxCell id="6JBezXDPbV5h1wkgulPZ-6" value="&amp;lt;&amp;lt;schema&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Waitlist&lt;/b&gt;" style="html=1;whiteSpace=wrap;" parent="--JE3dBzEUqlvVUsnqfo-33" vertex="1">
           <mxGeometry x="90" y="285" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-1" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="445" y="300" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-2" value="&amp;lt;&amp;lt;execution environment&amp;gt;&amp;gt; &lt;b&gt;Frontend&lt;/b&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="lfdUtc-GP-L2ql-bySc0-1">
+          <mxGeometry width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-3" value="&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt;&lt;br&gt;docker image" style="html=1;whiteSpace=wrap;" vertex="1" parent="lfdUtc-GP-L2ql-bySc0-1">
+          <mxGeometry x="55" y="40" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-4" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=65;entryDy=260;entryPerimeter=0;exitX=0;exitY=0;exitDx=0;exitDy=125;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="lfdUtc-GP-L2ql-bySc0-2" target="--JE3dBzEUqlvVUsnqfo-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-8" value="&amp;lt;&amp;lt;protocol&amp;gt;&amp;gt;&amp;nbsp;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;HTTPS&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="lfdUtc-GP-L2ql-bySc0-4">
+          <mxGeometry x="0.2735" y="1" relative="1" as="geometry">
+            <mxPoint x="-26" y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=65;entryDy=260;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="lfdUtc-GP-L2ql-bySc0-2" target="--JE3dBzEUqlvVUsnqfo-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-6" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=65;entryDy=260;entryPerimeter=0;exitX=0;exitY=0;exitDx=120;exitDy=135;exitPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="lfdUtc-GP-L2ql-bySc0-2" target="--JE3dBzEUqlvVUsnqfo-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-9" value="&amp;lt;&amp;lt;protocol&amp;gt;&amp;gt;&amp;nbsp;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;HTTPS&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="lfdUtc-GP-L2ql-bySc0-6">
+          <mxGeometry x="-0.174" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-10" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="190" y="342.5" width="140" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-11" value="&amp;lt;&amp;lt;web browser&amp;gt;&amp;gt;" style="verticalAlign=top;align=center;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;" vertex="1" parent="lfdUtc-GP-L2ql-bySc0-10">
+          <mxGeometry width="140" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=65;entryDy=260;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="lfdUtc-GP-L2ql-bySc0-11" target="lfdUtc-GP-L2ql-bySc0-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-14" value="&amp;lt;&amp;lt;protocol&amp;gt;&amp;gt;&amp;nbsp;&lt;br&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;HTTPS&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fillColor=none;" vertex="1" connectable="0" parent="lfdUtc-GP-L2ql-bySc0-13">
+          <mxGeometry x="-0.2" y="-2" relative="1" as="geometry">
+            <mxPoint x="8" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-15" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;br&gt;Patients&#39;s device" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="109.99999999999999" y="280.7" width="45.6" height="61.800000000000004" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-16" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;br&gt;Doctor&#39;s device" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;" vertex="1" parent="1">
+          <mxGeometry x="110" y="388.2" width="45.6" height="61.8" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="lfdUtc-GP-L2ql-bySc0-16" target="lfdUtc-GP-L2ql-bySc0-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lfdUtc-GP-L2ql-bySc0-20" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=10;entryDy=140;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="lfdUtc-GP-L2ql-bySc0-15" target="lfdUtc-GP-L2ql-bySc0-11">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
